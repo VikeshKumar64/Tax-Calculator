@@ -4,8 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tax Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    
+    <div id="container">
+
+        <div id="box">
+            <div id="heading">Tax Calculator</div>
+            <div class="anualIncomeBox">
+
+                <div class="annualdiv">
+                    <label for="annualIncome">Enter Gross annual income</label>
+                    <i id="questionMark" class="fa-regular fa-circle-question"></i>
+                    <div id="tooltipQuestionMark" class="tooltip">Gross annual income is your total salary in a year before any deduction</div>
+
+                </div>
+                
+                
+                <div class="annualdiv">
+                    <input id="annualIncome" type="text" placeholder="Enter gross annual income">
+                    <i id="symbol" class="fas fa-exclamation-circle"></i>
+                    <div id="tooltip" class="tooltip">Please Enter Numbers Only</div>
+                </div>
+
+            </div>
+
+
+            <div class="extraIncomeBox">
+
+                <div class="extradiv">
+                    <label for="extraIncome">Enter extra income</label>
+                    <i id="questionMark1" class="fa-regular fa-circle-question"></i>
+                    <div id="tooltipQuestionMark1" class="tooltip">Extra Income From Your Other Source of Income</div>
+                </div>    
+
+                <div class="extradiv">
+                    <input id="extraIncome" type="text" placeholder="Enter extra income from other sources">
+                    <i id="symbol1" class="fas fa-exclamation-circle"></i>
+                    <div id="tooltip1" class="tooltip">Please Enter Numbers Only</div>
+                </div>
+
+
+            </div>
+
+            <div class="ageBox">
+                <div class="agediv">
+                    <label for="age">Enter age group</label>
+                    <i id="questionMark2" class="fa-regular fa-circle-question"></i>
+                    <div id="tooltipQuestionMark2" class="tooltip">Select Age for Calculate Taxable Amount</div>
+                </div>
+                <select name="age" id="age">
+                    <option value="<40"> &lt;40 </option>
+                    <option value="≥ 40 &amp; &lt; 60"> &#8805; 40 &amp; &lt; 60</option>
+                    <option value="≥ 60"> &#8805; 60</option>
+
+                </select>
+            </div>
+
+            <div class="deductionBox">
+
+
+                <div class="diductiondiv">
+                    <label for="tDeductions">Enter total aplicable deduction</label>
+                    <i id="questionMark3" class="fa-regular fa-circle-question"></i>
+                    <div id="tooltipQuestionMark3" class="tooltip">Gross Deduction Amount ( Total expense Amount)</div>
+                </div>
+
+
+                <div class="diductiondiv">
+                    <input id="tDeductions" type="text" placeholder="Add total aplicable deduction">
+                    <i id="symbol2" class="fas fa-exclamation-circle"></i>
+                    <div id="tooltip2" class="tooltip">Please Enter Numbers Only</div>
+                </div>
+
+            </div>
+
+            <button id="submitButton">Submit</button>
+            <!--
+
+
+            -->
+            
+        </div>
+        <div id="answerBox">
+            <div class="textYour">
+                Your overall income will be 
+            </div>
+            <div class="textAnswer">
+                120000
+            </div>
+            <div class="textDiduction">
+                after tax Deduction
+            </div>
+            <button id="closeButton">Close</button>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
