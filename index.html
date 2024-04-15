@@ -12,6 +12,47 @@
 
         <div id="box">
             <div id="heading">Tax Calculator</div>
+            <!-- This will be the popup for heading (Description)-->
+            <div id="description">
+                <div class="point">
+                    <div class="heading">Tax Calculation Formula:</div>
+                    <div class="content">
+                        <p>The tax calculation is based on the following formula:</p>
+                        <ul>
+                            <li>Income under 8 Lakhs is not taxed.</li>
+                            <li>Income over 8 Lakhs is taxed at different rates based on age:</li>
+                            <ul>
+                                <li>30% for age &lt; 40</li>
+                                <li>40% for age ≥ 40 but &lt; 60</li>
+                                <li>10% for age ≥ 60</li>
+                            </ul>
+                        </ul>
+                        <p>For example, if someone aged 34 has an income of 40 Lakhs with no deductions, the tax would be 30% of the amount over 8 Lakhs.</p>
+                    </div>
+                </div>
+            
+                <div class="point">
+                    <div class="heading">Error Handling:</div>
+                    <div class="content">
+                        <p>The system does not restrict users from entering incorrect values in the number fields.</p>
+                        <p>An error icon will be highlighted to the right of the input field if an incorrect value is entered. Hovering over the icon will display a tooltip showing the error.</p>
+                    </div>
+                </div>
+            
+                <div class="point">
+                    <div class="heading">Age Range:</div>
+                    <div class="content">
+                        <p>The age dropdown field includes the following options:</p>
+                        <ul>
+                            <li>&lt;40</li>
+                            <li>≥ 40 &amp; &lt; 60</li>
+                            <li>≥ 60</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+
             <div class="anualIncomeBox">
 
                 <div class="annualdiv annualdiv1">
@@ -81,12 +122,11 @@
             </div>
 
             <button id="submitButton">Submit</button>
-            <!--
-
-
-            -->
+            
             
         </div>
+
+        <!-- This will show the output screen -->
         <div id="answerBox">
             <div class="textYour">
                 Your overall income will be 

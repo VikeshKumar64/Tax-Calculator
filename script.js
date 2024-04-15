@@ -11,6 +11,17 @@ const symbol1 = document.querySelector("#symbol1");
 const symbol2 = document.querySelector("#symbol2");
 
 
+const taxCalculator = document.querySelector("#heading");
+const description = document.querySelector("#description");
+
+taxCalculator.addEventListener("mouseover", () => {
+    description.style.display = "block";
+});
+
+taxCalculator.addEventListener("mouseout", () => {
+    description.style.display = "none";
+});
+
 
 
 annualIncomeInput.addEventListener("input",()=>{
@@ -47,7 +58,7 @@ tDeductionsInput.addEventListener("input",()=>{
 
 
 
-// this code is for errorSymbol to enter number only..
+// this code is for errorSymbol to (enter number only.)
 
 symbol.addEventListener("mouseover", () => {
     document.getElementById("tooltip").style.display = "block";
@@ -62,7 +73,6 @@ symbol1.addEventListener("mouseover", () => {
     document.getElementById("tooltip1").style.display = "block";
 });
 
-// Clear message when not hovering over symbol1
 symbol1.addEventListener("mouseout", () => {
     document.getElementById("tooltip1").style.display = "none";
 });
@@ -71,16 +81,17 @@ symbol2.addEventListener("mouseover", () => {
     document.getElementById("tooltip2").style.display = "block";
 });
 
-// Clear message when not hovering over symbol1
 symbol2.addEventListener("mouseout", () => {
     document.getElementById("tooltip2").style.display = "none";
 });
 
+//Error symbol end;
 
 
 
 
-//-----------
+
+// This is for Question mark pop up
 
 const questionMark = document.getElementById("questionMark");
 const tooltipQuestionMark = document.getElementById("tooltipQuestionMark");
@@ -101,7 +112,7 @@ questionMark.addEventListener("mouseover", () => {
 questionMark.addEventListener("mouseout", () => {
     tooltipQuestionMark.style.display = "none";
 });
-//
+
 questionMark1.addEventListener("mouseover", () => {
     tooltipQuestionMark1.style.display = "block";
 });
@@ -109,7 +120,7 @@ questionMark1.addEventListener("mouseover", () => {
 questionMark1.addEventListener("mouseout", () => {
     tooltipQuestionMark1.style.display = "none";
 });
-//
+
 questionMark2.addEventListener("mouseover", () => {
     tooltipQuestionMark2.style.display = "block";
 });
@@ -117,7 +128,7 @@ questionMark2.addEventListener("mouseover", () => {
 questionMark2.addEventListener("mouseout", () => {
     tooltipQuestionMark2.style.display = "none";
 });
-//
+
 questionMark3.addEventListener("mouseover", () => {
     tooltipQuestionMark3.style.display = "block";
 });
@@ -125,7 +136,7 @@ questionMark3.addEventListener("mouseover", () => {
 questionMark3.addEventListener("mouseout", () => {
     tooltipQuestionMark3.style.display = "none";
 });
-//
+//Question mark pop up end
 
 
 
@@ -142,11 +153,8 @@ submitButton.addEventListener("click",()=>{
 
 
     let isValid = true;
-    //calculation of tax
 
     if (isNaN(annualIncomeValue) ) {
-
-        // showError(annualIncomeInput, "Invalid input");
         isValid = false;
     }
 
@@ -189,7 +197,7 @@ submitButton.addEventListener("click",()=>{
     }
 });
 
-// Function to clear error messages
+// This is the function to clear error messages
 function clearErrors() {
     const errorIcons = document.querySelectorAll(".error-icon");
     errorIcons.forEach(icon => icon.style.display = "none");
