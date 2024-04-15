@@ -15,7 +15,7 @@
 #box{
     border: 2px solid #212121;
     width: 30rem;
-    height: 68%;
+    height: auto;
     display: flex;
     flex-direction: column;
     padding: 30px;
@@ -31,6 +31,7 @@
     color: #A020F0;
     font-size:xx-large;
     font-weight: 700;
+    margin-bottom: 20px;
 }
 
 .anualIncomeBox ,.extraIncomeBox ,.ageBox ,.deductionBox{
@@ -115,27 +116,36 @@
     cursor: pointer;
 }
 
+
+.annualdiv,.extradiv,.agediv,.diductiondiv{
+    display: flex;
+}
+.annualdiv1,.extradiv1,.agediv1,.diductiondiv1{
+    display: flex;
+    align-items: end;
+}
+
 #symbol{
     font-size: 17px;
-    position: absolute;
-    bottom: 72%;
-    left: 87%;
+    position: relative;
     cursor: pointer;
     display: none;
+    right: 25px;
+    top: 10px;
 }
 #symbol1{
     font-size: 17px;
-    position: absolute;
-    bottom: 55%;
-    left: 87%;
+    position: relative;
+    top: 10px;
+    right: 25px;
     cursor: pointer;
     display: none;
 }
 #symbol2{
     font-size: 17px;
-    position: absolute;
-    bottom: 19.5%;
-    left: 87%;
+    position: relative;
+    top: 10px;
+    right: 25px;
     cursor: pointer;
     display: none;
 }
@@ -153,12 +163,12 @@
 
 /* Adjust position of the tooltip */
 #tooltip {
-    top: 22.5%;
+    top: 25.5%;
     left: 95%;
     display: none;
 }
 #tooltip1 {
-    top: 39.5%;
+    top: 42.1%;
     left: 95%;
     display: none;
 }
@@ -183,12 +193,12 @@
     color: white;
     padding: 5px;
     border-radius: 5px;
-    display: none;
     font-size: 14px;
     width: 200px;
-    top: 3%; 
+    top: 8%; 
     left: 87%; 
     transform: translateX(-50%); 
+    display: none;
 }
 
 #tooltipQuestionMark1 {
@@ -197,12 +207,12 @@
     color: white;
     padding: 5px;
     border-radius: 5px;
-    display: none;
     font-size: 14px;
     width: 200px;
-    top: 24%; 
-    left: 71%; 
+    top: 27%; 
+    left: 70%; 
     transform: translateX(-50%); 
+    display: none;
 }
 #tooltipQuestionMark2 {
     position: absolute;
@@ -210,12 +220,12 @@
     color: white;
     padding: 5px;
     border-radius: 5px;
-    display: none;
     font-size: 14px;
     width: 200px;
-    top: 41%; 
-    left: 66%; 
+    top: 44%; 
+    left: 64%; 
     transform: translateX(-50%); 
+    display: none;
 }
 #tooltipQuestionMark3 {
     position: absolute;
@@ -223,11 +233,11 @@
     color: white;
     padding: 5px;
     border-radius: 5px;
-    display: none;
     font-size: 14px;
     width: 350px;
     top: 64%; 
     left: 111%; 
     transform: translateX(-50%); 
+    display: none;
 }
 

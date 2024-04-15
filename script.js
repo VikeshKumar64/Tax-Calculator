@@ -177,9 +177,11 @@ submitButton.addEventListener("click",()=>{
 
     const answerBox = document.getElementById("answerBox");
     const textArea = document.querySelector(".textAnswer");
+    const taxis = document.querySelector(".taxis");
 
     textArea.textContent = totalIncome - tax;
     answerBox.style.display = "flex";
+    taxis.textContent = `Your tax is ( ${tax} )`;
 
 
     console.log("Tax: ", tax);
