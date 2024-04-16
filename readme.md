@@ -25,7 +25,7 @@ This is a Tax Calculator web application! This application allows users to estim
 
 ## Getting Started
 
-To use the Tax Calculator application locally, clone this repository to your machine and open the `index.html` file in your web browser. Alternatively, you can access the live demo [here](#).
+To use the Tax Calculator application locally, clone this repository to your machine and open the `index.html` file in your web browser. Alternatively, you can access the live demo [https://661e05fc5b69078bab85dc67--visionary-malabi-ec6cdc.netlify.app/].
 
 ## Usage
 
