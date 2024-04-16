@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", checkEmptyFields);
+
+
 const annualIncomeInput = document.querySelector("#annualIncome");
 const extraIncomeInput = document.querySelector("#extraIncome");
 const ageInput = document.querySelector("#age");
@@ -10,7 +13,6 @@ const symbol = document.querySelector("#symbol");
 const symbol1 = document.querySelector("#symbol1");
 const symbol2 = document.querySelector("#symbol2");
 
-
 const taxCalculator = document.querySelector("#heading");
 const description = document.querySelector("#description");
 
@@ -22,49 +24,19 @@ taxCalculator.addEventListener("mouseout", () => {
     description.style.display = "none";
 });
 
+function validateInput(inputField, errorSymbol) {
+    const value = inputField.value.trim();
+    const isValid = /^\d*$/.test(value); 
 
+    errorSymbol.style.display = isValid ? "none" : "inline";
+    return isValid;
+}
 
-annualIncomeInput.addEventListener("input",()=>{
-    const value = annualIncomeInput.value;
-    if(isNaN(value)&&value.trim() !== ""){
-        symbol.style.display = "inline";
-    }
-    else{
-        symbol.style.display = "none";
-    }
-});
-
-
-extraIncomeInput.addEventListener("input",()=>{
-    const value = extraIncomeInput.value;
-    if(isNaN(value) && value.trim() !== ""){
-        symbol1.style.display = "inline";
-    }
-    else{
-        symbol1.style.display = "none";
-    }
-});
-
-
-tDeductionsInput.addEventListener("input",()=>{
-    const value = tDeductionsInput.value;
-    if(isNaN(value) && value.trim() !== ""){
-        symbol2.style.display = "inline";
-    }
-    else{
-        symbol2.style.display = "none";
-    }
-})
-
-
-
-// this code is for errorSymbol to (enter number only.)
 
 symbol.addEventListener("mouseover", () => {
     document.getElementById("tooltip").style.display = "block";
 });
 
-// Clear message when not hovering over symbol1
 symbol.addEventListener("mouseout", () => {
     document.getElementById("tooltip").style.display = "none";
 });
@@ -86,6 +58,8 @@ symbol2.addEventListener("mouseout", () => {
 });
 
 //Error symbol end;
+
+
 
 
 
@@ -139,70 +113,104 @@ questionMark3.addEventListener("mouseout", () => {
 //Question mark pop up end
 
 
+// Event listeners for input fields
+annualIncomeInput.addEventListener("input", () => {
+    const isValid = validateInput(annualIncomeInput, symbol);
+    submitButton.disabled = !isValid;
+});
 
+extraIncomeInput.addEventListener("input", () => {
+    const isValid = validateInput(extraIncomeInput, symbol1);
+    submitButton.disabled = !isValid;
+});
 
+tDeductionsInput.addEventListener("input", () => {
+    const isValid = validateInput(tDeductionsInput, symbol2);
+    submitButton.disabled = !isValid;
+});
 
-submitButton.addEventListener("click",()=>{
+submitButton.addEventListener("click", () => {
+    console.log("Submit button clicked");
     clearErrors();
 
-    
+    // Get input values
     const annualIncomeValue = parseFloat(annualIncomeInput.value);
     const extraIncomeInputValue = parseFloat(extraIncomeInput.value);
     const tDeductionsInputValue = parseFloat(tDeductionsInput.value);
     const ageValue = ageInput.value;
 
+    if (annualIncomeValue === "" || extraIncomeInputValue === "" || tDeductionsInputValue === "" || ageValue === "") {
+        alert("Please fill in all fields.");
+        return; 
+    }
 
     let isValid = true;
 
-    if (isNaN(annualIncomeValue) ) {
-        isValid = false;
-    }
-
-    if (ageValue === "") {
-        showError(ageInput, "Age group is required");
-        isValid = false;
-    }
-
+    const inputs = [annualIncomeInput, extraIncomeInput, tDeductionsInput];
+    inputs.forEach(input => {
+        const value = input.value.trim();
+        if (!/^\d*$/.test(value)) {
+            showError(input, "Please enter only numbers");
+            isValid = false;
+        }
+    });
 
     if (isValid) {
-    let tax = 0;
+        let tax = 0;
 
+        let totalIncome = annualIncomeValue + extraIncomeInputValue - tDeductionsInputValue;
 
-    let totalIncome = annualIncomeValue + extraIncomeInputValue - tDeductionsInputValue;
-
-    if(totalIncome > 800000){
-        if(ageValue === "<40"){
-            tax = 0.3*(totalIncome - 800000);
+        if (totalIncome > 800000) {
+            if (ageValue === "<40") {
+                tax = 0.3 * (totalIncome - 800000);
+            } else if (ageValue === "≥ 40 & < 60") {
+                tax = 0.4 * (totalIncome - 800000);
+            } else if (ageValue === "≥ 60") {
+                tax = 0.1 * (totalIncome - 800000);
+            }
         }
 
-        else if(ageValue === "≥ 40 & < 60"){
-            tax = 0.4*(totalIncome - 800000);
-        }
-        else if(ageValue === "≥ 60"){
-            tax = 0.1*(totalIncome - 800000);
-        }
-    }
+        const textArea = document.querySelector(".textAnswer");
+        const taxis = document.querySelector(".taxis");
 
-    const answerBox = document.getElementById("answerBox");
-    const textArea = document.querySelector(".textAnswer");
-    const taxis = document.querySelector(".taxis");
+        textArea.textContent = totalIncome - tax;
+        answerBox.style.display = "flex";
+        taxis.textContent = `Your tax is ( ${tax} )`;
 
-    textArea.textContent = totalIncome - tax;
-    answerBox.style.display = "flex";
-    taxis.textContent = `Your tax is ( ${tax} )`;
-
-
-    console.log("Tax: ", tax);
-
+        console.log("Tax: ", tax);
+        checkEmptyFields();
     }
 });
 
-// This is the function to clear error messages
+function checkEmptyFields() {
+    const inputs = [annualIncomeInput, extraIncomeInput, tDeductionsInput, ageInput];
+    const allEmpty = inputs.every(input => input.value.trim() === "");
+    const anyEmpty = inputs.some(input => input.value.trim() === "");
+    
+    if (allEmpty) {
+        submitButton.disabled = true; 
+    } else {
+        submitButton.disabled = anyEmpty; 
+    }
+}
+
+
+annualIncomeInput.addEventListener("input", checkEmptyFields);
+extraIncomeInput.addEventListener("input", checkEmptyFields);
+tDeductionsInput.addEventListener("input", checkEmptyFields);
+ageInput.addEventListener("input", checkEmptyFields);
+
+
 function clearErrors() {
     const errorIcons = document.querySelectorAll(".error-icon");
     errorIcons.forEach(icon => icon.style.display = "none");
 }
 
-closeButton.addEventListener("click", ()=>{
-    answerBox.style.display="none";
+function showError(inputField, errorMessage) {
+    const errorIcon = inputField.parentElement.querySelector(".error-icon");
+    errorIcon.style.display = "inline";
+}
+
+closeButton.addEventListener("click", () => {
+    answerBox.style.display = "none";
 });
